@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1778092565008,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1778092626360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,20 @@\n+\"\"\"\r\n+URL configuration for sistema_alumnos project.\r\n+\r\n+The `urlpatterns` list routes URLs to views. For more information please see:\r\n+    https://docs.djangoproject.com/en/6.0/topics/http/urls/\r\n+Examples:\r\n+Function views\r\n+    1. Add an import:  from my_app import views\r\n+    2. Add a URL to urlpatterns:  path('', views.home, name='home')\r\n+Class-based views\r\n+    1. Add an import:  from other_app.views import Home\r\n+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')\r\n+Including another URLconf\r\n+    1. Import the include() function: from django.urls import include, path\r\n+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))\r\n+\"\"\"\r\n from django.contrib import admin\r\n from django.urls import path, include\r\n from django.conf import settings\r\n from django.conf.urls.static import static\r\n@@ -7,7 +23,7 @@\n     path('admin/', admin.site.urls),\r\n     path('', include('alumnos.urls')),\r\n ]\r\n \r\n-# Esto sirve tanto para estáticos como para media en desarrollo y ayuda en la ruta de producción\r\n-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\r\n-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\n\\ No newline at end of file\n+# Servir archivos media en desarrollo\r\n+if settings.DEBUG:\r\n+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\r\n"
+                },
+                {
+                    "date": 1778092747315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,9 @@\n \"\"\"\r\n URL configuration for sistema_alumnos project.\r\n \r\n The `urlpatterns` list routes URLs to views. For more information please see:\r\n-    https://docs.djangoproject.com/en/6.0/topics/http/urls/\r\n-Examples:\r\n-Function views\r\n-    1. Add an import:  from my_app import views\r\n-    2. Add a URL to urlpatterns:  path('', views.home, name='home')\r\n-Class-based views\r\n-    1. Add an import:  from other_app.views import Home\r\n-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')\r\n-Including another URLconf\r\n-    1. Import the include() function: from django.urls import include, path\r\n-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))\r\n+    https://docs.djangoproject.com/en/4.2/topics/http/urls/\r\n \"\"\"\r\n from django.contrib import admin\r\n from django.urls import path, include\r\n from django.conf import settings\r\n@@ -23,7 +13,9 @@\n     path('admin/', admin.site.urls),\r\n     path('', include('alumnos.urls')),\r\n ]\r\n \r\n-# Servir archivos media en desarrollo\r\n-if settings.DEBUG:\r\n-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\r\n+# Corrección para producción y desarrollo:\r\n+# Esto permite que Django reconozca las rutas de archivos estáticos y media\r\n+# incluso cuando DEBUG es False en Render.\r\n+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\r\n+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1778092565008,
