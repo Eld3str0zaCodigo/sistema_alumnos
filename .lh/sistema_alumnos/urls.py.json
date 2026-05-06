@@ -1,0 +1,18 @@
+{
+    "sourceFile": "sistema_alumnos/urls.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1778092565008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1778092565008,
+            "name": "Commit-0",
+            "content": "from django.contrib import admin\r\nfrom django.urls import path, include\r\nfrom django.conf import settings\r\nfrom django.conf.urls.static import static\r\n\r\nurlpatterns = [\r\n    path('admin/', admin.site.urls),\r\n    path('', include('alumnos.urls')),\r\n]\r\n\r\n# Esto sirve tanto para estáticos como para media en desarrollo y ayuda en la ruta de producción\r\nurlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\r\nurlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)"
+        }
+    ]
+}
