@@ -16,3 +16,5 @@ services:
         generateValue: true
       - key: DEBUG
         value: "False"
+        # ... resto del archivo arriba ...
+    startCommand: "python manage.py migrate && gunicorn sistema_alumnos.wsgi:application"
