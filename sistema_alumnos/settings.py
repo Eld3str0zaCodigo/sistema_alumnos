@@ -3,7 +3,7 @@ from pathlib import Path
 import dj_database_url
 import pymysql
 
-# 1. ENGAÑAR A DJANGO PARA USAR PYMYSQL COMO MYSQLDB
+# 1. ENGAÑAR A DJANGO PARA USAR PYMYSQL (Vital para MySQL en Clever Cloud)
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -60,7 +60,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sistema_alumnos.wsgi.application'
 
 # 2. CONFIGURACIÓN DE BASE DE DATOS (MYSQL CLEVER CLOUD)
-# Esto soluciona el error "relation does not exist" al forzar el motor MySQL
+# Forzamos el engine a mysql para evitar el error "relation does not exist"
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
@@ -69,7 +69,7 @@ DATABASES = {
     )
 }
 
-# Opciones adicionales para asegurar compatibilidad con Clever Cloud
+# Opciones de compatibilidad para Clever Cloud
 DATABASES['default']['OPTIONS'] = {
     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
     'charset': 'utf8mb4',
@@ -89,12 +89,12 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# 3. ARCHIVOS ESTÁTICOS (CONFIGURACIÓN RENDER)
+# 3. ARCHIVOS ESTÁTICOS Y MEDIA
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Configuración optimizada para Render
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files (Fotos de alumnos)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
