@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1778091535474,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1778092117590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,5 +12,5 @@\n         value: \"mysql://urmlughcdekdchph:GTLBP2IsIpevej6zXHRY@b6vglz6ldb1pxj20sw0t-mysql.services.clever-cloud.com:3306/b6vglz6ldb1pxj20sw0t\"\r\n       - key: SECRET_KEY\r\n         generateValue: true\r\n       - key: DEBUG\r\n-        value: \"False\"\n\\ No newline at end of file\n+        value: \"True\"\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1778091535474,
