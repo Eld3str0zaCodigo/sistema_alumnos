@@ -6,8 +6,8 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --no-input
-    # ESTO ES LO MÁS IMPORTANTE:
-    startCommand: "python manage.py migrate && gunicorn sistema_alumnos.wsgi:application"
+    # Agregamos --fake-initial para que no de error si las tablas ya existen en Clever Cloud
+    startCommand: "python manage.py migrate --fake-initial && gunicorn sistema_alumnos.wsgi:application"
     envVars:
       - key: DATABASE_URL
         value: "mysql://urmlughcdekdchph:GTLBP2IsIpevej6zXHRY@b6vglz6ldb1pxj20sw0t-mysql.services.clever-cloud.com:3306/b6vglz6ldb1pxj20sw0t"
