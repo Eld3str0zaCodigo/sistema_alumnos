@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Sistema de Alumnos{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Sistema de Alumnos</h1>
+    <p class="lead">Gestión completa de alumnos y carreras</p>
+    <div class="mt-4">
+        <a href="{% url 'alumno_list' %}" class="btn btn-primary btn-lg me-3">Ver Alumnos</a>
+        <a href="{% url 'carrera_list' %}" class="btn btn-secondary btn-lg">Ver Carreras</a>
+    </div>
+</div>
+{% endblock %}
