@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: sistema-alumnos
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --no-input
+    startCommand: |
+      python manage.py migrate
+      gunicorn sistema_alumnos.wsgi
+    envVars:
+      - key: DATABASE_URL
+        value: "mysql://urmlughcdekdchph:GTLBP2IsIpevej6zXHRY@b6vglz6ldb1pxj20sw0t-mysql.services.clever-cloud.com:3306/b6vglz6ldb1pxj20sw0t"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"

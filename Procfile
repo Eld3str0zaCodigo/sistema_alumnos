@@ -1,1 +1,1 @@
-web: gunicorn sistema_alumnos.wsgi:application
+web: gunicorn sistema_alumnos.wsgi:application              
