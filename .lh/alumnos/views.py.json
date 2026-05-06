@@ -1,0 +1,18 @@
+{
+    "sourceFile": "alumnos/views.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1778092907512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1778092907512,
+            "name": "Commit-0",
+            "content": "from django.shortcuts import render\r\nfrom django.views.generic import ListView, CreateView, UpdateView, DeleteView\r\nfrom django.urls import reverse_lazy\r\nfrom .models import Carrera, Alumno\r\n\r\n# --- VISTA DE INICIO ---\r\ndef index(request):\r\n    return render(request, 'index.html')\r\n\r\n# --- VISTAS PARA CARRERAS ---\r\nclass CarreraListView(ListView):\r\n    model = Carrera\r\n    template_name = 'carreras/listar.html'\r\n    context_object_name = 'carreras'\r\n    # Ordenamos para evitar errores de paginación en algunos motores SQL\r\n    ordering = ['id'] \r\n\r\nclass CarreraCreateView(CreateView):\r\n    model = Carrera\r\n    template_name = 'carreras/form.html'\r\n    fields = ['nombre', 'duracion']\r\n    success_url = reverse_lazy('carrera_list')\r\n\r\nclass CarreraUpdateView(UpdateView):\r\n    model = Carrera\r\n    template_name = 'carreras/form.html'\r\n    fields = ['nombre', 'duracion']\r\n    success_url = reverse_lazy('carrera_list')\r\n\r\nclass CarreraDeleteView(DeleteView):\r\n    model = Carrera\r\n    template_name = 'carreras/confirm_delete.html'\r\n    success_url = reverse_lazy('carrera_list')\r\n\r\n# --- VISTAS PARA ALUMNOS ---\r\nclass AlumnoListView(ListView):\r\n    model = Alumno\r\n    template_name = 'alumnos/listar.html'\r\n    context_object_name = 'alumnos'\r\n    ordering = ['id']\r\n\r\nclass AlumnoCreateView(CreateView):\r\n    model = Alumno\r\n    template_name = 'alumnos/form.html'\r\n    # IMPORTANTE: Asegúrate de que estos nombres coincidan con los de tu models.py\r\n    fields = ['nombres', 'apellidos', 'dni', 'foto', 'id_carrera']\r\n    success_url = reverse_lazy('alumno_list')\r\n\r\nclass AlumnoUpdateView(UpdateView):\r\n    model = Alumno\r\n    template_name = 'alumnos/form.html'\r\n    fields = ['nombres', 'apellidos', 'dni', 'foto', 'id_carrera']\r\n    success_url = reverse_lazy('alumno_list')\r\n\r\nclass AlumnoDeleteView(DeleteView):\r\n    model = Alumno\r\n    template_name = 'alumnos/confirm_delete.html'\r\n    success_url = reverse_lazy('alumno_list')"
+        }
+    ]
+}

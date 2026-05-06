@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1778091535474,
@@ -12,6 +12,10 @@
                 {
                     "date": 1778092117590,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,5 +12,5 @@\n         value: \"mysql://urmlughcdekdchph:GTLBP2IsIpevej6zXHRY@b6vglz6ldb1pxj20sw0t-mysql.services.clever-cloud.com:3306/b6vglz6ldb1pxj20sw0t\"\r\n       - key: SECRET_KEY\r\n         generateValue: true\r\n       - key: DEBUG\r\n-        value: \"False\"\n\\ No newline at end of file\n+        value: \"True\"\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1778092896034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n     plan: free\r\n     buildCommand: |\r\n       pip install -r requirements.txt\r\n       python manage.py collectstatic --no-input\r\n-    startCommand: \"python manage.py migrate --fake-initial && gunicorn sistema_alumnos.wsgi:application\"\r\n+    # Usamos --fake-initial para los modelos existentes y permitimos que las tablas de sistema se sincronicen\r\n+    startCommand: \"python manage.py migrate --fake-initial && python manage.py migrate --run-syncdb && gunicorn sistema_alumnos.wsgi:application\"\r\n     envVars:\r\n       - key: DATABASE_URL\r\n         value: \"mysql://urmlughcdekdchph:GTLBP2IsIpevej6zXHRY@b6vglz6ldb1pxj20sw0t-mysql.services.clever-cloud.com:3306/b6vglz6ldb1pxj20sw0t\"\r\n       - key: SECRET_KEY\r\n"
                 }
             ],
             "date": 1778091535474,

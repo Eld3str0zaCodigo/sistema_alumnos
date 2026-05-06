@@ -6,7 +6,8 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --no-input
-    startCommand: "python manage.py migrate --fake-initial && gunicorn sistema_alumnos.wsgi:application"
+    # Usamos --fake-initial para los modelos existentes y permitimos que las tablas de sistema se sincronicen
+    startCommand: "python manage.py migrate --fake-initial && python manage.py migrate --run-syncdb && gunicorn sistema_alumnos.wsgi:application"
     envVars:
       - key: DATABASE_URL
         value: "mysql://urmlughcdekdchph:GTLBP2IsIpevej6zXHRY@b6vglz6ldb1pxj20sw0t-mysql.services.clever-cloud.com:3306/b6vglz6ldb1pxj20sw0t"
